@@ -1,32 +1,6 @@
-from random import choices
-from functools import cache
+
 from pathlib import Path
 import json
-
-
-@cache
-def rand_c6():
-    return [*[str(item) for item in range(10)], *[chr(item) for item in range(97, 123)]]
-
-
-@cache
-def rand_global_id():
-    return [*[str(item) for item in range(10)], *[chr(item) for item in range(97, 123)],
-            *[chr(item) for item in range(65, 91)]]
-
-
-def get_rand_str(fn, k=16):
-    rand_arr = fn()
-    res = choices(rand_arr, k=k)
-    return ''.join(res)
-
-
-def get_c6():
-    return get_rand_str(rand_c6)
-
-
-def get_global_id():
-    return get_rand_str(rand_global_id, k=24)
 
 
 def dumps_cookies(cookie_list: list[str]) -> str:
