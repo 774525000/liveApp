@@ -1,6 +1,8 @@
 from .login import NewDevice, SmsSend, SmsLogin
+from app import task
 
 
+@task.add_task('login')
 async def auto_login():
     new_device = NewDevice()
     res = await new_device()

@@ -1,5 +1,6 @@
 from .live import QueryDetail, Subscribe, Report
 import asyncio
+from app import task
 
 
 async def execute_task(user_info):
@@ -15,6 +16,7 @@ async def execute_task(user_info):
     print(f"{user_info['x-uid']}----{res}")
 
 
+@task.add_task('live')
 async def enter_live_room():
     user_info_list = [
         {

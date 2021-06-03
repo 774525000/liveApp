@@ -76,3 +76,7 @@ class Spider:
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):
         await Spider.client.aclose()
+
+    @staticmethod
+    def async_client():
+        return Spider()
