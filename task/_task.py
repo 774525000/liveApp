@@ -1,7 +1,7 @@
 import asyncio
 from spider import Spider
 from inspect import isfunction
-from .exception import NoSuchTaskName
+from ._exception import NoSuchTaskName
 
 
 class Task:
