@@ -6,9 +6,9 @@ import config
 class Spider:
     headers: dict = {}
     data: dict = {}
-    _data_dumps: str = ''
     api: Api = None
-    is_get = True
+    is_get: bool = True
+    _data_dumps: str = ''
     _client: httpx.AsyncClient = None
 
     async def run(self):

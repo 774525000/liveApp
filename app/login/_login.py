@@ -53,6 +53,8 @@ class SmsSend(Spider):
 
         self.api = Api('mtop.taobao.mloginservice.smssend', '1.0')
 
+        device_id = params['data']['device_id']
+
         self.headers = {
             'x-sgext': 'JAEHZhrj3CTTCrdr305aq2Y2VjZWNUU0VzJUNkU1XyRFNlA1VDFUMFU+Ug==',
             'x-social-attr': '2',
@@ -83,7 +85,7 @@ class SmsSend(Spider):
             'x-appkey': '21646297',
             'x-page-url': 'http://m.taobao.com/index.htm',
             'x-page-name': 'com.ali.user.mobile.login.ui.UserLoginActivity',
-            'x-devid': 'AlWd2R0qYeA76cAfgtMG2yQskdtm0wn5JOtiPeRnJHMW',
+            'x-devid': device_id,
             'user-agent': 'MTOPSDK/3.1.1.7 (Android;8.1.0;LGE;Nexus 5X)',
             'Host': 'guide-acs.m.taobao.com',
             'Accept-Encoding': 'gzip',
@@ -93,16 +95,20 @@ class SmsSend(Spider):
         self.data = {
             "ext": "{\"apiReferer\":\"{\\\"eventName\\\":\\\"autoLoginToken=null|trySdkLogin\\\"}\",\"apiVersion\":\"2.0\",\"deviceName\":\"Nexus 5X\",\"sdkTraceId\":\"smsLogin_YLdUQZXeZo0DAGVXLtLwfk0R_1622629039_pagelogin_YLdUQZXeZo0DAGVXLtLwfk0R1622629019\"}",
             "loginInfo": "{\"appName\":\"21646297\",\"appVersion\":\"android_9.25.0\",\"codeLength\":\"4\",\"countryCode\":\"CN\",\"deviceId\":\"%s\",\"deviceName\":\"google(Nexus 5X)\",\"locale\":\"zh_CN\",\"loginId\":\"%s\",\"loginType\":\"taobao\",\"phoneCode\":\"86\",\"sdkVersion\":\"android_4.5.8.45\",\"site\":0,\"t\":1622629039164,\"ttid\":\"1568860058617@taobao_android_9.25.0\",\"useAcitonType\":true,\"useDeviceToken\":true,\"utdid\":\"YLdUQZXeZo0DAGVXLtLwfk0R\"}" % (
-                params['data']['device_id'], mobile),
+                device_id, mobile),
             "riskControlInfo": "{\"apdId\":\"a424ae99db0045f9fcbd02f0129cd2d181c0cd94\",\"t\":\"1622629039165\",\"umidToken\":\"FH8Am\/ZLPGNVtwJ5zIsLptl2IYGbWEJU\",\"wua\":\"FKr2_yPjj7BH28qEwhVU0sekXjuIAlws0jcKW+GrAk0j05hDvOd1fz0GdA662UxR4uGzIgsLQxRJz43a0JexCGWyw85GH8byl7rJdferQIw36Po3lQRolx8KHhNVeaZnChMpg7NT840+I6Zmz5P43ylHkiMU+QP3qHt1JAhJxnM5NmtzuBjwKM989xBhc9qOM44gZkQytCzMPx2wIhgExRQsrC4+MAGW8zDMMMx8MHqfYi1RsPfZw5exlhNrzqf4Z4MiqwaoLRhhf+iVlR7izfizzDG4Va6YuVFDHXMLssrS17OCQwcUeIFOxf+lg2z\/Am2SDx8kH+o\/Tn7QfhCxxQner9KIzJXbe5dMEJTxwwlYgkAEab1MchbOukAABcFGyR0wSnlN6IcdWBVknTr1JusMH3e4UPpAjOhhDf23fJYU8WgnWkSetro+VfAyOE5s9ZLkM\"}"}
 
 
 class SmsLogin(Spider):
-    def __init__(self, code, mobile, params):
+    def __init__(self, params1, code, mobile, params2):
         ctime = get_unix()
         self.is_get = False
 
         self.api = Api('mtop.taobao.mloginservice.smslogin', '1.0')
+
+        sms_sid = params2['data']['returnValue']['extMap']['smsSid']
+
+        device_id = params1['data']['device_id']
 
         self.headers = {
             'x-sgext': 'JAE2fgLSxBXLO69ax39Cmn4HTgdOBF0FTwNMB10FThVdB0gETABMAU0PSg==',
@@ -134,7 +140,7 @@ class SmsLogin(Spider):
             'x-appkey': '21646297',
             'x-page-url': 'http://m.taobao.com/index.htm',
             'x-page-name': 'com.ali.user.mobile.login.ui.UserLoginActivity',
-            'x-devid': 'AlWd2R0qYeA76cAfgtMG2yQskdtm0wn5JOtiPeRnJHMW',
+            'x-devid': device_id,
             'user-agent': 'MTOPSDK/3.1.1.7 (Android;8.1.0;LGE;Nexus 5X)',
             'Host': 'guide-acs.m.taobao.com',
             'Accept-Encoding': 'gzip',
@@ -143,5 +149,6 @@ class SmsLogin(Spider):
 
         self.data = {
             "ext": "{\"apiReferer\":\"{\\\"eventName\\\":\\\"autoLoginToken=null|trySdkLogin\\\"}\",\"apiVersion\":\"2.0\",\"deviceName\":\"Nexus 5X\",\"sdkTraceId\":\"smsLogin_YLdUQZXeZo0DAGVXLtLwfk0R_1622629039_pagelogin_YLdUQZXeZo0DAGVXLtLwfk0R1622629019\"}",
-            "loginInfo": "{\"appName\":\"21646297\",\"appVersion\":\"android_9.25.0\",\"countryCode\":\"CN\",\"deviceId\":\"AlWd2R0qYeA76cAfgtMG2yQskdtm0wn5JOtiPeRnJHMW\",\"deviceName\":\"google(Nexus 5X)\",\"locale\":\"zh_CN\",\"loginId\":\"%s\",\"loginType\":\"taobao\",\"phoneCode\":\"86\",\"sdkVersion\":\"android_4.5.8.45\",\"site\":0,\"smsCode\":\"%s\",\"smsSid\":\"%s\",\"t\":1622629820198,\"ttid\":\"1568860058617@taobao_android_9.25.0\",\"useAcitonType\":true,\"useDeviceToken\":true,\"utdid\":\"YLdUQZXeZo0DAGVXLtLwfk0R\"}" % (mobile, code, params['data']['returnValue']['extMap']['smsSid']),
+            "loginInfo": "{\"appName\":\"21646297\",\"appVersion\":\"android_9.25.0\",\"countryCode\":\"CN\",\"deviceId\":\"%s\",\"deviceName\":\"google(Nexus 5X)\",\"locale\":\"zh_CN\",\"loginId\":\"%s\",\"loginType\":\"taobao\",\"phoneCode\":\"86\",\"sdkVersion\":\"android_4.5.8.45\",\"site\":0,\"smsCode\":\"%s\",\"smsSid\":\"%s\",\"t\":1622629820198,\"ttid\":\"1568860058617@taobao_android_9.25.0\",\"useAcitonType\":true,\"useDeviceToken\":true,\"utdid\":\"YLdUQZXeZo0DAGVXLtLwfk0R\"}" % (
+                device_id, mobile, code, sms_sid),
             "riskControlInfo": "{\"apdId\":\"a424ae99db0045f9fcbd02f0129cd2d181c0cd94\",\"t\":\"1622629820198\",\"umidToken\":\"FH8Am\/ZLPGNVtwJ5zIsLptl2IYGbWEJU\",\"wua\":\"FKr2_nb8lbVdoWWKrdwd0kSKZdpK9ehuMTs1FnJG7gVMzg+jtMkVxfP2s6hjmKr23RSqsfMTQa4UDExSLDnYXwCfVdllCtImOR5UUPUhD41kPg3Kr+Xbf44FNIhYYtu1CpEQxeTZFWy6kvAchfo7bKUrDZp7UzfsPoi4Fk6ttwQcLxW6uHDiMvzzWTQdrSEVkieGrF2gVE\/M6314C5ayb33N5FbM0B0fIR2BuKMzEEpsobTYD+WiIRV2zkmZ6EdNv6K8lPo9I9WS7gtocvKGVqSPK9gx0cN7yq8KEEA1x6K1GA+Al7iEFYcoF3amfoDoRFy1oCRwp19SBuqX2LZAHmifnbroDxDr4+Ks3690Nj2vB0DRalnX4lGQtX7s71dFADz38ljhHJ37JmppwlPRIiiYg9oS1vIF2UsNCNfuygbkHRDvwKfMbz9dNv30K9wqFK+6L\"}"}
