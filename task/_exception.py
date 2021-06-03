@@ -5,7 +5,7 @@ class BasicException(Exception):
         self.msg = msg
 
     def __str__(self):
-        return f'{self.basic_str}:{self.msg}'
+        return f'{self.basic_str}: {self.msg}'
 
     def __repr__(self):
         return self.__str__()
