@@ -164,3 +164,60 @@ class Report(Spider):
         self.data = {"anchorId": "790956988",
                      "liveEventsJson": "[{\"accountId\":\"790956988\",\"action\":\"enter\",\"count\":1,\"extendJson\":\"{\\\"entrySource\\\":\\\"null\\\",\\\"fansLevel\\\":\\\"0\\\",\\\"liveSource\\\":\\\"null\\\",\\\"roomStatus\\\":\\\"1\\\",\\\"serverParams\\\":\\\"null\\\",\\\"sjsdItemId\\\":\\\"null\\\",\\\"timeMovingItemId\\\":\\\"null\\\",\\\"timeShift\\\":\\\"false\\\",\\\"timeShiftEntry\\\":\\\"0\\\"}\",\"feedId\":\"311734092779\",\"scene\":\"taobaolive\",\"timestamp\":\"%s\",\"type\":\"0\"}]" % ctime.millis,
                      "liveId": "311734092779"}
+
+
+class CommentPublish(Spider):
+    """
+    发弹幕
+    """
+
+    def __init__(self, user_info, params):
+        ctime = get_unix()
+
+        self.api = Api('mtop.taobao.iliad.comment.publish', '1.0')
+
+        topic = params['data']['topic']
+
+        self.headers = {
+            'x-sgext': 'JAFFpNihHmYRSHUpHQyY6aR0lHSUd4d2nHWcZpN1lmaHdJJ3lnOXd5ZwlQ==',
+            'x-social-attr': '3',
+            'x-sign': 'azYBCM003xAAKl75G0obfFsZ3NNlGn76Wt8VjFlkkdMNKP72HR7tMfNIbt3CMWsFAcJc5n8eCQv1oEr+DssaTv++92pe6l76Xupe+l',
+            'x-sid': user_info['x-sid'],
+            'A-SLIDER-Q': 'appKey=21646297&ver=1622706466102',
+            'x-uid': user_info['x-uid'],
+            'x-nettype': 'WIFI',
+            'x-pv': '6.3',
+            'x-disastergrd': '',
+            'x-nq': 'WIFI',
+            'x-region-channel': 'CN',
+            'x-m-biz-live-bizcode': 'TAOBAO',
+            'x-features': '27',
+            'x-app-conf-v': '0',
+            'x-mini-wua': 'HHnB_OiJmKXL+9eerGplvuvmXDGWhiQRMSagOF2y5KU8q0C84ZDCnvY8U0EJoBfpwbVwuzM0rcfNfawwgteLwOWrrxVTmZNL8VF75/d7JokcTvwtVaItLdAXoLCYZukY6+phMm304FOH6nyDwNVsUy04+WcZiwC1IaUcbu+jlgy2MTOs=',
+            'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'cache-control': 'no-cache',
+            'x-t': f'{ctime.seconds}',
+            'Cookie': user_info['Cookie'],
+            'x-bx-version': '6.5.27',
+            'f-refer': 'mtop',
+            'x-extdata': 'openappkey=DEFAULT_AUTH',
+            'x-ttid': '1568860058617@taobao_android_9.25.0',
+            'x-app-ver': '9.25.0',
+            'x-c-traceid': 'YLdUQZXeZo0DAGVXLtLwfk0R1622707493411172913808',
+            'a-orange-dq': 'appKey=21646297&appVersion=9.25.0&clientAppIndexVersion=1120210603160102978',
+            'x-umt': 'm5oAeY5LPMwMzgJ5zF82gQPga6qexWzH',
+            'x-utdid': 'YLdUQZXeZo0DAGVXLtLwfk0R',
+            'c-launch-info': '3,0,1622707493411,1622632241270,2',
+            'x-appkey': '21646297',
+            'x-page-url': 'https://market.m.taobao.com/app/mtb/live-commodity/pages/index',
+            'x-page-name': 'https://market.m.taobao.com/app/mtb/live-commodity/pages/index',
+            'x-devid': user_info['x-devid'],
+            'user-agent': 'MTOPSDK/3.1.1.7 (Android;8.1.0;LGE;Nexus 5X)',
+            'Host': 'guide-acs.m.taobao.com',
+            'Accept-Encoding': 'gzip',
+            'Connection': 'Keep-Alive'
+        }
+
+        self.data = {
+            "renders": "{\"fanLevel\":\"2\"}", "topic": topic,
+            "content": "你好呀"}
