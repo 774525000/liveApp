@@ -1,7 +1,7 @@
 import asyncio
 from spider import Spider
-from inspect import isfunction
-from ._exception import NoSuchTaskName
+from inspect import iscoroutinefunction
+from ._exception import NoSuchTaskNameException, NotAsyncTaskException
 
 
 class Task:
@@ -10,8 +10,9 @@ class Task:
 
     def add_task(self, task_name):
         def callback(fn):
-            if isfunction(fn):
-                self._handle_task(task_name, fn)
+            if iscoroutinefunction(fn) is False:
+                raise NotAsyncTaskException(task_name)
+            self._handle_task(task_name, fn)
 
         return callback
 
@@ -24,7 +25,7 @@ class Task:
     def execute_task(self, task_name, *args, **kwargs):
         tasks = self._tasks.get(task_name)
         if tasks is None:
-            raise NoSuchTaskName(task_name)
+            raise NoSuchTaskNameException(task_name)
         asyncio.run(self._run(tasks, *args, **kwargs))
 
     @staticmethod
