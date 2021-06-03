@@ -1,4 +1,4 @@
-class BasicException(Exception):
+class TaskException(Exception):
     basic_str = ''
 
     def __init__(self, msg: str = ''):
@@ -11,9 +11,9 @@ class BasicException(Exception):
         return self.__str__()
 
 
-class NoSuchTaskNameException(BasicException):
+class NoSuchTaskNameException(TaskException):
     basic_str = 'no such task name'
 
 
-class NotAsyncTaskException(BasicException):
+class NotAsyncTaskException(TaskException):
     basic_str = 'not a async task function'
