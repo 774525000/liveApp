@@ -1,5 +1,6 @@
 from ._utils import Api, dumps, merge_dict, get_unix, encode_headers
 import httpx
+import config
 
 
 class Spider:
@@ -31,7 +32,7 @@ class Spider:
             return res.json()
 
     async def get_headers_params(self):
-        url = 'http://192.168.0.141:10086/sign'
+        url = config.SIGN_URL
 
         data = {
             **self.get_base_headers(self.headers),
