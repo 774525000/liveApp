@@ -1,4 +1,5 @@
 from ._login import NewDevice, SmsSend, SmsLogin
+from ._utils import save_user_info
 from app import task
 
 
@@ -19,4 +20,5 @@ async def auto_login():
 
     smg_login = SmsLogin(params1, code, mobile, params2)
     params3 = await smg_login()
-    print(params3)
+
+    save_user_info(params1, params3)

@@ -1,4 +1,5 @@
 from spider import Spider, Api, get_unix
+from ._utils import get_c6, get_global_id
 
 
 class NewDevice(Spider):
@@ -39,8 +40,8 @@ class NewDevice(Spider):
             "new_device": "true",
             "c4": "",
             "c5": "unknown",
-            "c6": "ea81cf6e1418df54",
-            "device_global_id": "YLdUQZXeZo0DAGVXLtLwfk0R",
+            "c6": get_c6(),
+            "device_global_id": get_global_id(),
             "c0": "google",
             "c1": "Nexus 5X"
         }

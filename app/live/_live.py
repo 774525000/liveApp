@@ -37,12 +37,12 @@ class QueryDetail(Spider):
             'x-extdata': 'openappkey=DEFAULT_AUTH',
             'x-ttid': '1568860058617@taobao_android_9.25.0',
             'x-app-ver': '9.25.0',
-            'x-c-traceid': user_info['x-c-traceid'],
+            'x-c-traceid': 'YKnJdlCwF6oDACfhFIu95LNr16226052898242238122149',
             'x-biz-info': 'source=taobao',
             'x-location': '120.162405,30.184988',
             'a-orange-dq': 'appKey=21646297&appVersion=9.25.0&clientAppIndexVersion=1120210602113200236',
             'x-umt': 'HUcAHOZLPMafpwJ5xkex2Ppe0m92FMTu',
-            'x-utdid': user_info['x-utdid'],
+            'x-utdid': 'YLOUGlsA8BMDAGVXLtJVKFBF',
             'c-launch-info': '3,0,1622605289824,1622538313482,3',
             'x-appkey': '21646297',
             'x-page-url': 'http://h5.m.taobao.com/taolive/video.html',
@@ -93,11 +93,11 @@ class Subscribe(Spider):
             'x-extdata': 'openappkey=DEFAULT_AUTH',
             'x-ttid': '1568860058617@taobao_android_9.25.0',
             'x-app-ver': '9.25.0',
-            'x-c-traceid': user_info['x-c-traceid'],
+            'x-c-traceid': 'YKnJdlCwF6oDACfhFIu95LNr16226052898242238122149',
             'x-location': '120.162405,30.184988',
             'a-orange-dq': 'appKey=21646297&appVersion=9.25.0&clientAppIndexVersion=1120210602113200236',
             'x-umt': 'HUcAHOZLPMafpwJ5xkex2Ppe0m92FMTu',
-            'x-utdid': user_info['x-utdid'],
+            'x-utdid': 'YLOUGlsA8BMDAGVXLtJVKFBF',
             'c-launch-info': '3,0,1622605290531,1622538313482,3',
             'x-appkey': '21646297',
             'x-page-url': 'http://h5.m.taobao.com/taolive/video.html',
@@ -111,7 +111,7 @@ class Subscribe(Spider):
 
         self.data = {"appKey": "21646297", "ext": f"{ctime.millis}", "from": "tb931554566", "id": user_info['x-uid'],
                      "namespace": 1, "role": 3, "sdkVersion": "0.3.0", "tag": "tb", "timestamp": ctime.millis,
-                     "topic": topic, "utdId": user_info['x-utdid']}
+                     "topic": topic, "utdId": 'YLOUGlsA8BMDAGVXLtJVKFBF'}
 
 
 class Report(Spider):
@@ -145,11 +145,11 @@ class Report(Spider):
             'x-extdata': 'openappkey=DEFAULT_AUTH',
             'x-ttid': '1568860058617@taobao_android_9.25.0',
             'x-app-ver': '9.25.0',
-            'x-c-traceid': user_info['x-c-traceid'],
+            'x-c-traceid': 'YKnJdlCwF6oDACfhFIu95LNr16226052898242238122149',
             'x-location': '120.162405,30.184988',
             'a-orange-dq': 'appKey=21646297&appVersion=9.25.0&clientAppIndexVersion=1120210602113200236',
             'x-umt': 'HUcAHOZLPMafpwJ5xkex2Ppe0m92FMTu',
-            'x-utdid': user_info['x-utdid'],
+            'x-utdid': 'YLOUGlsA8BMDAGVXLtJVKFBF',
             'c-launch-info': '3,0,1622605291026,1622538313482,3',
             'x-appkey': '21646297',
             'x-page-url': 'http://h5.m.taobao.com/taolive/video.html',
