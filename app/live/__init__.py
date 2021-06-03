@@ -3,7 +3,7 @@ import asyncio
 from app import task
 
 
-async def execute_task(user_info):
+async def enter_room(user_info):
     q = QueryDetail(user_info)
     res = await q()
     print(res)
@@ -39,5 +39,5 @@ async def enter_live_room():
 
     task_list = []
     for item in user_info_list:
-        task_list.append(execute_task(item))
+        task_list.append(enter_room(item))
     await asyncio.gather(*task_list)
