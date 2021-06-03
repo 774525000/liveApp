@@ -5,29 +5,29 @@ import httpx
 class Spider:
     headers: dict = {}
     data: dict = {}
-    data_dumps: str = ''
+    _data_dumps: str = ''
     api: Api = None
     is_get = True
-    client: httpx.AsyncClient = None
+    _client: httpx.AsyncClient = None
 
     async def run(self):
-        self.data_dumps = dumps(self.data)
+        self._data_dumps = dumps(self.data)
         headers = await self.get_headers_params()
         return await self.send_request(headers)
 
     async def send_request(self, headers):
         params = {
-            'data': self.data_dumps
+            'data': self._data_dumps
         }
 
         headers = encode_headers(headers)
 
         url = f'http://guide-acs.m.taobao.com/gw/{self.api.api}/{self.api.v}/'
         if self.is_get is True:
-            res = await Spider.client.get(url, params=params, headers=headers)
+            res = await Spider._client.get(url, params=params, headers=headers)
             return res.json()
         else:
-            res = await Spider.client.post(url, data=params, headers=headers)
+            res = await Spider._client.post(url, data=params, headers=headers)
             return res.json()
 
     async def get_headers_params(self):
@@ -35,12 +35,12 @@ class Spider:
 
         data = {
             **self.get_base_headers(self.headers),
-            'data': self.data_dumps,
+            'data': self._data_dumps,
             'v': self.api.v,
             'api': self.api.api
         }
 
-        res = await Spider.client.get(url, params=data)
+        res = await Spider._client.get(url, params=data)
         params = res.json()
         return merge_dict(params, self.headers)
 
@@ -71,11 +71,11 @@ class Spider:
         return await self.run()
 
     async def __aenter__(self):
-        Spider.client = httpx.AsyncClient()
-        return Spider.client
+        Spider._client = httpx.AsyncClient()
+        return Spider._client
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):
-        await Spider.client.aclose()
+        await Spider._client.aclose()
 
     @staticmethod
     def async_client():
