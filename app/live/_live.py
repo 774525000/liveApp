@@ -221,3 +221,57 @@ class CommentPublish(Spider):
         self.data = {
             "renders": "{\"fanLevel\":\"2\"}", "topic": topic,
             "content": "你好呀"}
+
+
+class FavorRoom(Spider):
+    """
+    直播间点赞
+    """
+
+    def __init__(self, user_info, params):
+        ctime = get_unix()
+
+        self.api = Api('mtop.taobao.iliad.recommend.publish', '1.0')
+
+        self.headers = {
+            'x-sgext': 'JAHM3qIoZO9rwQ+gZ4XiYN797v3u/v3/5vzm7+/67Pn97+/67P7o/+z+6/0=',
+            'x-social-attr': '3',
+            'x-sign': 'azYBCM003xAAJbJoS9jdI5TAmGMH9dJltkD5E7X7fUzhtxJp8YEBrh/XgkIuroea7V2weZOB5ZQZP6Zh4lT20RMhG/SyJbJlsiWyZb',
+            'x-sid': user_info['x-sid'],
+            'x-uid': user_info['x-uid'],
+            'x-nettype': 'WIFI',
+            'x-pv': '6.3',
+            'x-disastergrd': '',
+            'x-nq': 'WIFI',
+            'x-region-channel': 'CN',
+            'x-m-biz-live-bizcode': 'TAOBAO',
+            'x-features': '27',
+            'x-app-conf-v': '0',
+            'x-mini-wua': 'HHnB_jd3d8BpiygBrP+HqMhEz5x8iLheF1chwKYKx77TnZp6SsiyOqsQ1oCK2fR/+E6fxD3ONQcPyP6j3OWLus8kotHlIa63xbgjzTBrCkwpgRBXQpXiBpv2D0agrucHjWzfTpJNjizPsLfdTjm2aOWOFR+Mjp2e58c+xmZ5wOutp31A=',
+            'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'cache-control': 'no-cache',
+            'x-t': f'{ctime.seconds}',
+            'Cookie': user_info['Cookie'],
+            'x-bx-version': '6.5.27',
+            'f-refer': 'mtop',
+            'x-extdata': 'openappkey=DEFAULT_AUTH',
+            'x-ttid': '1568860058617@taobao_android_9.25.0',
+            'x-app-ver': '9.25.0',
+            'x-c-traceid': 'YLdUQZXeZo0DAGVXLtLwfk0R1622709859118356713808',
+            'a-orange-dq': 'appKey=21646297&appVersion=9.25.0&clientAppIndexVersion=1120210603163603566',
+            'x-umt': 'm5oAeY5LPMwMzgJ5zF82gQPga6qexWzH',
+            'x-utdid': 'YLdUQZXeZo0DAGVXLtLwfk0R',
+            'c-launch-info': '3,0,1622709859118,1622632241270,2',
+            'x-appkey': '21646297',
+            'x-page-url': 'https://market.m.taobao.com/app/mtb/app-tblive-room/pages/index2',
+            'x-page-name': 'https://market.m.taobao.com/app/mtb/app-tblive-room/pages/index2',
+            'x-devid': user_info['x-devid'],
+            'user-agent': 'MTOPSDK/3.1.1.7 (Android;8.1.0;LGE;Nexus 5X)',
+            'Host': 'guide-acs.m.taobao.com',
+            'Accept-Encoding': 'gzip',
+            'Connection': 'Keep-Alive'
+        }
+
+        topic = params['data']['topic']
+
+        self.data = {"count": "10", "topic": topic}
