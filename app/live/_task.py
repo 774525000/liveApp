@@ -20,10 +20,10 @@ async def enter_room(user_info):
     # params4 = await c()
     # print(params4)
 
-    await asyncio.sleep(3)
-    f = FavorRoom(user_info, params1)
-    params5 = await f()
-    print(params5)
+    # await asyncio.sleep(3)
+    # f = FavorRoom(user_info, params1)
+    # params5 = await f()
+    # print(params5)
 
 
 @task.add_task('live')
