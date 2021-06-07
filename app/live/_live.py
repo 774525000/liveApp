@@ -1,4 +1,5 @@
 from spider import Spider, get_unix, Api
+from utils import get_lower_num
 
 
 class QueryDetail(Spider):
@@ -290,3 +291,61 @@ class FavorRoom(Spider):
         topic = params['data']['topic']
 
         self.data = {"count": "10", "topic": topic}
+
+
+class SendMsg(Spider):
+    def __init__(self):
+        ctime = get_unix()
+
+        self.api = Api('mtop.taobao.powermsg.msg.sendmsg', '1.0')
+
+        self.headers = {
+            'x-sgext': 'JAEiBdip/tCwL9ROvGs5jgUTNRM1EyYaNxE9AT0SPAEmEzMQNhI2ETwbMQ==',
+            'x-social-attr': '3',
+            'x-sign': 'azYBCM003xAALgfWsIXr2v2i8+LlTjfeAFKdSABAyPdea8feAkq0HAKU9/mZ17N9zBisRBQZTz3MhBPaV+9Daqaark8XbgfeB24H3g',
+            'x-sid': '2775809838c2887a187b91f506e8c92d',
+            'A-SLIDER-Q': 'appKey=21646297&ver=1622981502612',
+            'x-uid': '2209572427031',
+            'x-nettype': 'WIFI',
+            'x-pv': '6.3',
+            'x-disastergrd': '',
+            'x-nq': 'WIFI',
+            'x-region-channel': 'CN',
+            'x-features': '27',
+            'x-app-conf-v': '0',
+            'x-mini-wua': 'HHnB_1fuvjVTTrCjF20qT/cIoSsnsIb4aDZJougS+CjimxfOZek9yvIwhmHWTyDVwO9i+cRW7hA4R0OrPsJ9Q5Zmlc3QA1GZQAzwFHtAm5/ROXx4BawWaD5ePKNUPHf84m90zAgTdYH5E8hnAuAN1nbeu2XOGdcKcoT+f/G7uu5oW7Dc=',
+            'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'cache-control': 'no-cache',
+            'x-t': f'{ctime.seconds}',
+            'Cookie': 'thw=cn; tfstk=clRVBVxEQszNaV1sps1alLhHblqACjBl3R7fnLuz470x3b0FjE5m7lQSD4jNfRhOn; l=eBPkPikcjnnrHtT-BO5ZPurza7SF2IRZhCVzaNbMiInca6Lh_FM3FNCCPoFX8dtYwt1FbetylIClFdLHR3sdvxDDBUy83k4i32C..; _m_h5_tk=99e0959ecd066654051d0c1a4c054abd_1622800022257; _m_h5_tk_enc=8dfa8559ab5b9406b94066194c9af68b; xlly=1; unb=2209572427031; sn=; uc3=vt3=F8dCuw7+gb+rbuIvHeY=&id2=UUphw2BCaFXrTatuAA==&nk2=F5RMGoXjyRtiUrA=&lg2=VT5L2FSpMGV7TQ==; uc1=cookie14=Uoe2zsmzzvtzyg==&cookie15=WqG3DMC9VAQiUQ==&cookie21=VFC/uZ9ainBZ&existShop=false; csg=7ac735ed; lgc=tb931554566; t=46a9cbd2288b23388130ed713a76b739; cookie17=UUphw2BCaFXrTatuAA==; dnk=tb931554566; skt=1a5c938a899c6db5; munb=2209572427031; cookie2=2775809838c2887a187b91f506e8c92d; uc4=id4=0@U2grGN9Axww7kF+A9HhylLSlKE12GYeX&nk4=0@FY4HX7dO8Wd8xUGIADymp6EtntfFow==; tracknick=tb931554566; _cc_=Vq8l+KCLiw==; ti=; sg=61b; _l_g_=Ug==; _nk_=tb931554566; cookie1=AiAzS86U8AyQM+t18C+d5FT5KmB2ZSwxil9tZ5khPIU=; _tb_token_=ee561655b6eef; sgcookie=W100ZXpWS19OYAioKT9B3UxWHPQamMvlReMQ66KcKam955HUrL5TuvOfJtCEyjiVMJNf5BOJf76HGSipSBIy4FPVLg93mJCgs/mvj6bfJuu0NL8=; imewweoriw=3HOahQlaA1sKWUlyf+smbmou09pzC0swSeFP1vhdIEg=; WAPFDFDTGFG=+4cMKKP+8PI+KK8XUFmnFqlIaVJQJw==; _w_tb_nick=tb931554566; ockeqeudmj=j+0GVTk=; cna=FAwyGVKFSywCAXPFJohibZcS; isg=BJ6eJFyNcnSpnaYEtMKHZRzj5DbgX2LZeBJiP0gnCuHcaz5FsO-y6cQKZzFFolrx',
+            'x-bx-version': '6.5.27',
+            'f-refer': 'mtop',
+            'x-extdata': 'openappkey=DEFAULT_AUTH',
+            'x-ttid': '1568860058617@taobao_android_9.25.0',
+            'x-app-ver': '9.25.0',
+            'x-c-traceid': 'YKnJdlCwF6oDACfhFIu95LNr1623035329842178218238',
+            'x-location': '120.162393,30.184997',
+            'a-orange-dq': 'appKey=21646297&appVersion=9.25.0&clientAppIndexVersion=1120210607103201067',
+            'x-umt': 'm1wAAFlLPCBUrwJ54JtKPLxquaE8dI48',
+            'x-utdid': 'YKnJdlCwF6oDACfhFIu95LNr',
+            'c-launch-info': '3,0,1623035329842,1623033985470,3',
+            'x-appkey': '21646297',
+            'x-page-url': 'http://h5.m.taobao.com/taolive/video.html',
+            'x-page-name': 'com.taobao.taolive.room.TaoLiveVideoActivity',
+            'x-devid': 'Atzi2cGlhQSAlW_BJjJULENjeY88Cyak5-o8mmUXCIP6',
+            'user-agent': 'MTOPSDK/3.1.1.7 (Android;8.1.0;LGE;Nexus 5X)',
+            'Host': 'guide-acs.m.taobao.com',
+            'Accept-Encoding': 'gzip',
+            'Connection': 'Keep-Alive'
+        }
+
+        self.data = {
+            "msgId": get_lower_num(32),  # 这个要随机生成
+            "namespace": 1,
+            "qos": 0,
+            "sdkVersion": "0.3.0",
+            "sendAll": False,
+            "subType": 10010,
+            "tagList": "[]",
+            "topic": "bc2dfd00-fe1e-47b7-a5d6-3f09276c732d"
+        }

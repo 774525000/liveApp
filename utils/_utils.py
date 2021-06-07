@@ -13,15 +13,15 @@ def rand_global_id():
             *[chr(item) for item in range(65, 91)]]
 
 
-def get_rand_str(fn, k=16):
+def get_rand_str(fn, k):
     rand_arr = fn()
     res = choices(rand_arr, k=k)
     return ''.join(res)
 
 
-def get_c6():
-    return get_rand_str(rand_str)
+def get_lower_num(k=16):
+    return get_rand_str(rand_str, k)
 
 
-def get_utd_id():
-    return get_rand_str(rand_global_id, k=24)
+def get_lower_upper_num(k=24):
+    return get_rand_str(rand_global_id, k)
