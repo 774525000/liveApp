@@ -5,16 +5,16 @@ from ._utils import read_users
 
 
 async def enter_room(user_info):
-    # q = QueryDetail(user_info)
-    # params1 = await q()
-    # print(params1)
-    # s = Subscribe(user_info, params1)
-    # params2 = await s()
-    # print(params2)
-    #
-    # r = Report(user_info)
-    # params3 = await r()
-    # print(f"{user_info['x-uid']}----{params3}")
+    q = QueryDetail(user_info)
+    params1 = await q()
+    print(params1)
+    s = Subscribe(user_info, params1)
+    params2 = await s()
+    print(params2)
+
+    r = Report(user_info)
+    params3 = await r()
+    print(f"{user_info['x-uid']}----{params3}")
 
     # c = CommentPublish(user_info, params1)
     # params4 = await c()
@@ -24,9 +24,9 @@ async def enter_room(user_info):
     # f = FavorRoom(user_info, params1)
     # params5 = await f()
     # print(params5)
-    send_msg = SendMsg()
-    res = await send_msg()
-    print(res)
+    # send_msg = SendMsg()
+    # res = await send_msg()
+    # print(res)
 
 
 @task.add_task('live')
