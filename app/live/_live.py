@@ -58,7 +58,7 @@ class QueryDetail(Spider):
             "useLiveFandom": "true",
             "extendJson": "{\"guardAnchorSwitch\":true,\"version\":\"202003\"}",
             "ignoreH265": "false",
-            "liveId": "313660834641",
+            "liveId": "315939847323",
             "transParams": ""
         }
 
@@ -136,19 +136,20 @@ class Report(Spider):
         self.api = Api('mtop.taobao.iliad.event.report.batch', '2.0')
 
         self.headers = {
-            'x-sgext': 'JAG8P+I3xE6Kse7QhvUDED+ND40PjRyOCo8JihyJB44cnw6KDY4Iiw6OCYs=',
+            'x-sgext': 'JAFlTJHut5f5aJ0J9SxwyUxUfFR8VG9We1B5Rn9TfEZvVHpXeFd6VHtQeA==',
             'x-social-attr': '3',
-            'x-sign': 'azYBCM003xAAK8tYybQ7Sx8K9MpPO+tbzNdRzczFBHKaj7taBT94l6Khu3xXP7BGRP4mfTw6hxUgAd9fm2qP72ofYsqKG8tbyhvLW8',
+            'x-sign': 'azYBCM003xAAI7YDy+Z+LkSEYg/gg6YDuaKK9bGdeSrqo/YKx3cFxk4dtiQUg7SZ2rwIllBSxVq9WaIH5jLytxdHH5PmY7YDtmO2A7',
             'x-sid': user_info['x-sid'],
-            'A-SLIDER-Q': 'appKey=21646297&ver=1622733009879',
+            'A-SLIDER-Q': 'appKey=21646297&ver=1624260844726',
             'x-uid': user_info['x-uid'],
             'x-nettype': 'WIFI',
             'x-pv': '6.3',
+            'x-disastergrd': '',
             'x-nq': 'WIFI',
             'x-region-channel': 'CN',
             'x-features': '27',
             'x-app-conf-v': '0',
-            'x-mini-wua': 'HHnB_WFgDhN065C0BPtUx6co81556oh+vypE712TPhvD0ql0Gcdh0BSiRd83ipOGv9f9Y2hbSSbeLGIwdI2KoRejsuaeo2IeVyt7mbEQm41/8KjtLCY8Uz/yjfCTSmWPf3UXHzKm4q87P9C63jaI2m6S5/xAdXAmP5OIJDek0rxeZ3bw=',
+            'x-mini-wua': 'HHnB_kqnvEYG6PmIvaX3+GSb1DT1dxVtcI2gKtKL6QRYwq/7cpGCPGXZhUKz21HkqUt9Vakyljx+bedjmcoTjz8Rrt4kRxSWGBxVKigsHplj8uVpjVyMKKM98MfkZ3QAbLJKFzwxXXWMFOK8THkYbG0dtS3fHHWJSsw/YZau9tF9splQ=',
             'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
             'Content-Length': '1071',
             'x-t': f'{ctime.seconds}',
@@ -159,12 +160,12 @@ class Report(Spider):
             'x-extdata': 'openappkey=DEFAULT_AUTH',
             'x-ttid': '1568860058617@taobao_android_9.25.0',
             'x-app-ver': '9.25.0',
-            'x-c-traceid': 'YKnJdlCwF6oDACfhFIu95LNr16227726522791135125366',
-            'x-location': '120.162505,30.184952',
-            'a-orange-dq': 'appKey=21646297&appVersion=9.25.0&clientAppIndexVersion=1120210604094503394',
-            'x-umt': '5xoAtRtLPIcXogJ51P45604ytlcJgDWM',
+            'x-c-traceid': 'YKnJdlCwF6oDACfhFIu95LNr1624262549498104613755',
+            'x-location': '120.162405,30.184992',
+            'a-orange-dq': 'appKey=21646297&appVersion=9.25.0&clientAppIndexVersion=1120210621153401037',
+            'x-umt': 'ygQAlxdLPF+B4AJ6KAAppsv76V5lFzWQ',
             'x-utdid': 'YKnJdlCwF6oDACfhFIu95LNr',
-            'c-launch-info': '3,0,1622772652279,1622771407466,3',
+            'c-launch-info': '3,0,1624262549498,1624261786376,3',
             'x-appkey': '21646297',
             'x-page-url': 'http://h5.m.taobao.com/taolive/video.html',
             'x-page-name': 'com.taobao.taolive.room.TaoLiveVideoActivity',
@@ -177,8 +178,8 @@ class Report(Spider):
 
         self.data = {
             "anchorId": "790956988",
-            "liveEventsJson": "[{\"accountId\":\"790956988\",\"action\":\"enter\",\"count\":1,\"extendJson\":\"{\\\"entrySource\\\":\\\"null\\\",\\\"fansLevel\\\":\\\"0\\\",\\\"liveSource\\\":\\\"null\\\",\\\"roomStatus\\\":\\\"1\\\",\\\"serverParams\\\":\\\"null\\\",\\\"sjsdItemId\\\":\\\"null\\\",\\\"timeMovingItemId\\\":\\\"null\\\",\\\"timeShift\\\":\\\"false\\\",\\\"timeShiftEntry\\\":\\\"0\\\"}\",\"feedId\":\"313660834641\",\"scene\":\"taobaolive\",\"timestamp\":\"%s\",\"type\":\"0\"}]" % ctime.millis,
-            "liveId": "313660834641"
+            "liveEventsJson": "[{\"accountId\":\"790956988\",\"action\":\"enter\",\"count\":1,\"extendJson\":\"{\\\"entrySource\\\":\\\"null\\\",\\\"fansLevel\\\":\\\"0\\\",\\\"liveSource\\\":\\\"null\\\",\\\"roomStatus\\\":\\\"1\\\",\\\"serverParams\\\":\\\"null\\\",\\\"sjsdItemId\\\":\\\"null\\\",\\\"timeMovingItemId\\\":\\\"null\\\",\\\"timeShift\\\":\\\"false\\\",\\\"timeShiftEntry\\\":\\\"0\\\"}\",\"feedId\":\"315939847323\",\"scene\":\"taobaolive\",\"timestamp\":\"%s\",\"type\":\"0\"}]" % ctime.millis,
+            "liveId": "315939847323"
         }
 
 
