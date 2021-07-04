@@ -10,6 +10,11 @@ class Spider:
     is_get: bool = True
     _data_dumps: str = ''
     _client: httpx.AsyncClient = None
+    proxies = {
+        'http': 'http://192.168.0.209:8888',
+        'https': 'http://192.168.0.209:8888'
+    }
+    verify = './FiddlerRoot.pem'
 
     async def run(self):
         self._data_dumps = dumps(self.data)
@@ -72,7 +77,7 @@ class Spider:
         return await self.run()
 
     async def __aenter__(self):
-        Spider._client = httpx.AsyncClient()
+        Spider._client = httpx.AsyncClient(proxies=Spider.proxies, verify=Spider.verify)
         return Spider._client
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):
@@ -81,3 +86,7 @@ class Spider:
     @staticmethod
     def async_client():
         return Spider()
+
+    @staticmethod
+    def get_client():
+        return Spider._client

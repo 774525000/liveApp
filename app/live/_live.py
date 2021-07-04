@@ -58,7 +58,7 @@ class QueryDetail(Spider):
             "useLiveFandom": "true",
             "extendJson": "{\"guardAnchorSwitch\":true,\"version\":\"202003\"}",
             "ignoreH265": "false",
-            "liveId": "315939847323",
+            "liveId": "315187272448",
             "transParams": ""
         }
 
@@ -178,8 +178,69 @@ class Report(Spider):
 
         self.data = {
             "anchorId": "790956988",
-            "liveEventsJson": "[{\"accountId\":\"790956988\",\"action\":\"enter\",\"count\":1,\"extendJson\":\"{\\\"entrySource\\\":\\\"null\\\",\\\"fansLevel\\\":\\\"0\\\",\\\"liveSource\\\":\\\"null\\\",\\\"roomStatus\\\":\\\"1\\\",\\\"serverParams\\\":\\\"null\\\",\\\"sjsdItemId\\\":\\\"null\\\",\\\"timeMovingItemId\\\":\\\"null\\\",\\\"timeShift\\\":\\\"false\\\",\\\"timeShiftEntry\\\":\\\"0\\\"}\",\"feedId\":\"315939847323\",\"scene\":\"taobaolive\",\"timestamp\":\"%s\",\"type\":\"0\"}]" % ctime.millis,
-            "liveId": "315939847323"
+            "liveEventsJson": "[{\"accountId\":\"790956988\",\"action\":\"enter\",\"count\":1,\"extendJson\":\"{\\\"entrySource\\\":\\\"null\\\",\\\"fansLevel\\\":\\\"0\\\",\\\"liveSource\\\":\\\"null\\\",\\\"roomStatus\\\":\\\"1\\\",\\\"serverParams\\\":\\\"null\\\",\\\"sjsdItemId\\\":\\\"null\\\",\\\"timeMovingItemId\\\":\\\"null\\\",\\\"timeShift\\\":\\\"false\\\",\\\"timeShiftEntry\\\":\\\"0\\\"}\",\"feedId\":\"315187272448\",\"scene\":\"taobaolive\",\"timestamp\":\"%s\",\"type\":\"0\"}]" % ctime.millis,
+            "liveId": "315187272448"
+        }
+
+
+class LeaveRoom(Spider):
+    def __init__(self, user_info, params):
+        ctime = get_unix()
+        self.api = Api('mtop.taobao.powermsg.msg.unsubscribe', '1.0')
+
+        topic = params['data']['topic']
+
+        self.headers = {
+            'x-sgext': 'JAH+A951+Ay289KSurc/UgPPM88zzyDPMcc3ySDNMMg03SDPNcw3zDXKNc4x',
+            'x-social-attr': '3',
+            'x-sign': 'azYBCM003xAAKkNSm9TpGeIGJ14xKpNaTPt/rETEjHMf+gNTMi7wn7tEQ33h2kHAL+X9z6ULMANIAFdeE2sH7uIe6sWwykNaSTpzWk',
+            'x-sid': user_info['x-sid'],
+            'A-SLIDER-Q': 'appKey=21646297&ver=1624279451748',
+            'x-uid': user_info['x-uid'],
+            'x-nettype': 'WIFI',
+            'x-pv': '6.3',
+            'x-nq': 'WIFI',
+            'x-region-channel': 'CN',
+            'x-features': '27',
+            'x-app-conf-v': '0',
+            'x-mini-wua': 'HHnB_uZEFuDIk92YLa8jmqDvDeOJo5EGvXV7x64Fj0p/LOvMZhRZ97e2txNcAISGQHPL9IfM0bJMjHOF8dB2yhIM7nR7nqga784Rpevx0+lba5tPg2ncCWmfpZ58typzvfKp5+o0GBgBYboe4iCOg0+Jtj6s5O0G9f/jhXW5CSSV8j0E=',
+            'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'cache-control': 'no-cache',
+            'x-t': f'{ctime.seconds}',
+            'Cookie': user_info['Cookie'],
+            'x-bx-version': '6.5.27',
+            'f-refer': 'mtop',
+            'x-extdata': 'openappkey=DEFAULT_AUTH',
+            'x-ttid': '1568860058617@taobao_android_9.25.0',
+            'x-app-ver': '9.25.0',
+            'x-c-traceid': 'YKnJdlCwF6oDACfhFIu95LNr16243263508827111112947',
+            'x-location': '120.162575,30.184917',
+            'a-orange-dq': 'appKey=21646297&appVersion=9.25.0&clientAppIndexVersion=1120210622000700971',
+            'x-umt': 'ygQAlxdLPF+B4AJ6KAAppsv76V5lFzWQ',
+            'x-utdid': 'YKnJdlCwF6oDACfhFIu95LNr',
+            'c-launch-info': '3,0,1624326350882,1624269913650,3',
+            'x-appkey': '21646297',
+            'x-page-url': 'https://market.m.taobao.com/app/mtb/app-tblive-room/pages/index2',
+            'x-page-name': 'https://market.m.taobao.com/app/mtb/app-tblive-room/pages/index2',
+            'x-devid': user_info['x-devid'],
+            'user-agent': 'MTOPSDK/3.1.1.7 (Android;8.1.0;LGE;Nexus 5X)',
+            'Host': 'guide-acs.m.taobao.com',
+            'Accept-Encoding': 'gzip',
+            'Connection': 'Keep-Alive'
+        }
+
+        self.data = {
+            "appKey": "21646297",
+            "ext": "1624326334820",
+            "from": "tb931554566",
+            "id": "314927152134",
+            "namespace": 1,
+            "role": 5,
+            "sdkVersion": "0.3.0",
+            "tag": "tb",
+            "timestamp": ctime.millis,
+            "topic": topic,
+            "utdId": "YKnJdlCwF6oDACfhFIu95LNr"
         }
 
 
@@ -295,6 +356,10 @@ class FavorRoom(Spider):
 
 
 class SendMsg(Spider):
+    """
+    发弹幕
+    """
+
     def __init__(self):
         ctime = get_unix()
 
@@ -349,4 +414,65 @@ class SendMsg(Spider):
             "subType": 10010,
             "tagList": "[]",
             "topic": "bc2dfd00-fe1e-47b7-a5d6-3f09276c732d"
+        }
+
+
+class LiveIdSpider(Spider):
+    def __init__(self):
+        self.is_get = False
+
+        ctime = get_unix()
+        self.api = Api('mtop.mediaplatform.live.search.result', '1.0')
+
+        self.headers = {
+            'x-sgext': 'JAFWxhvdPaRzWxc6fx/6+sZn9mf2Z+Vl/mL0dfdv8XXlZ/Bk82X+ZPVk9Q==',
+            'x-social-attr': '3',
+            'x-sign': 'azYBCM003xAAJdFSyfE2NePvTcOdBdFV24Tc09bLHnyBFGFb1dFimiGv8XJ3NgRzjppTfjFWu++qD8VRgWSV4XAReMXhNdFV0TXRVd',
+            'x-sid': '19d68831d31f0fe04e5b7f485d0df4c5',
+            'A-SLIDER-Q': 'appKey=21646297&ver=1625281288093',
+            'x-uid': '2209572427031',
+            'x-nettype': 'WIFI',
+            'x-pv': '6.3',
+            'x-nq': 'WIFI',
+            'x-region-channel': 'CN',
+            'x-m-biz-live-bizcode': 'TAOBAO',
+            'x-features': '27',
+            'x-app-conf-v': '0',
+            'x-mini-wua': 'HHnB_tyPDwpSWXVW7+4et1J1eSvNR4WQUU2cDKlEUkUOmWPR+jX/WfCtmjdLpGL+/FmrIqISUKvj21UqLHPQhNQI7l1qvfegcfTQjkQys9XVUgPx+dBEpo4Lsp3oSOLsoWZZv4wBznDV5/vp9Re2GtjBWZ0ZJ2AjjHrTlaHSAGpa3wUY=',
+            'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'Content-Length': '308',
+            'x-t': f'{ctime.seconds}',
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'Cookie': 'thw=cn; tfstk=cezcB_xiWqoYlYouAZgbiJUV01_dZ6XE3ur7zPNSRy4bAuUPi2-yXaBhIvflrh1..; l=eBOnNmL4j9ol8FX_BOfw-urza77OSCOAGuPzaNbMiOCPOQ1B5-KfW69EKLT6C3GRh62XR38XM_XWBeYBV3K-nxv99qcLxkDmn; unb=2209572427031; sn=; uc3=lg2=URm48syIIVrSKA==&vt3=F8dCuwzokVxYBahCHes=&id2=UUphw2BCaFXrTatuAA==&nk2=F5RMGoXjyRtiUrA=; uc1=existShop=false&cookie21=W5iHLLyFe3xm&cookie14=Uoe2yIF8OeAxaw==&cookie15=UIHiLt3xD8xYTw==; csg=5bfde236; lgc=tb931554566; t=cd9f2dcb95cdd61296f0ec1e7196b542; cookie17=UUphw2BCaFXrTatuAA==; dnk=tb931554566; skt=e4188644fa773e86; munb=2209572427031; cookie2=19d68831d31f0fe04e5b7f485d0df4c5; uc4=nk4=0@FY4HX7dO8Wd8xUGIADymodlCaaT9wA==&id4=0@U2grGN9Axww7kF+A9HhylLSjtiLIHW+r; tracknick=tb931554566; _cc_=U+GCWk/7og==; ti=; sg=61b; _l_g_=Ug==; _nk_=tb931554566; cookie1=AiAzS86U8AyQM+t18C+d5FT5KmB2ZSwxil9tZ5khPIU=; _tb_token_=e3e5bee08750; sgcookie=W100rr1T44ywf4AdcKSGwyMOOGEvyLbbHf6mDb9DyODH2Hh1A+bGlmnFtKOQk13/vStGjRx1LQYR2yekhjJ3nN4qVKheTLSn00/1TRQDFDUgTh0=; imewweoriw=36GQoHh1ifE7IX5a+Lyv3qdgS9EMPU4Ot8u9tGwRePk=; WAPFDFDTGFG=+4cMKKP+8PI+KK8XUFmnFqlIaVJQJw==; _w_tb_nick=tb931554566; ockeqeudmj=ttovbrU=; cna=dK9lGbWRPQACAXPDiXpb5BtQ; isg=AtfX-tcQe88o9f982dGTpgGubUkhHKt-CcFbcCkE86YNWPeaMew7zpV4yMI5',
+            'x-bx-version': '6.5.27',
+            'f-refer': 'mtop',
+            'x-extdata': 'openappkey=DEFAULT_AUTH',
+            'x-ttid': '1568860058617@taobao_android_9.25.0',
+            'x-app-ver': '9.25.0',
+            'x-c-traceid': 'YKnJdlCwF6oDACfhFIu95LNr1625382583550048613842',
+            'x-location': '120.16261,30.185052',
+            'a-orange-dq': 'appKey=21646297&appVersion=9.25.0&clientAppIndexVersion=1120210704000700555',
+            'x-umt': 'K1gAIlBLPI+rYQJ6cMMUSyuMWEpzJdRc',
+            'x-utdid': 'YKnJdlCwF6oDACfhFIu95LNr',
+            'c-launch-info': '0,0,1625382583550,1625382321587,3',
+            'x-appkey': '21646297',
+            'x-page-url': 'http://h5.m.taobao.com/taolive/search.html',
+            'x-page-name': 'com.taobao.live.TaoLiveSearchActivity',
+            'x-devid': 'Atzi2cGlhQSAlW_BJjJULENtvUzl659hnIJEv_qLfu0a',
+            'user-agent': 'MTOPSDK/3.1.1.7 (Android;8.1.0;LGE;Nexus 5X)',
+            'Host': 'guide-acs.m.taobao.com',
+            'Accept-Encoding': 'gzip',
+            'Connection': 'Keep-Alive'
+        }
+
+        self.data = {
+            "broadCasterPageNum": "0",
+            "livePageSize": "20",
+            "q": "tb56371_88",
+            "tabName": "live",
+            "mNeedCache": "true",
+            "s": "10",
+            "livePageNum": "0",
+            "broadCasterPageSize": "0",
+            "viewversion": "3.0", "n": "0"
         }
