@@ -1,8 +1,8 @@
 from ._live import QueryDetail, Subscribe, Report, CommentPublish, FavorRoom, SendMsg, LeaveRoom, LiveIdSpider
 import asyncio
 from app import task
-from ._utils import read_users
-from ..upload import live_upload, Params, rand_str, keep_live_upload
+from ._utils import read_users, rand_str, Params
+from ._upload import live_upload, keep_live_upload
 from random import randint
 
 
@@ -38,7 +38,7 @@ async def enter_room(user_info):
 
     # 日志包
     params = Params(
-        user_id=user_info['x-uid'],
+        user_info['x-uid'],
         user_name=user_info['nick'],
         u_mid=rand_str(),
         imei=f'3536270780{randint(10000, 100000)}',
@@ -47,13 +47,13 @@ async def enter_room(user_info):
         stay_time=500000
     )
 
-    # res = await live_upload(params)
-    # print(f"{user_info['nick']}----{res}")
+    res = await live_upload(params)
+    print(f"{user_info['nick']}----{res}")
 
-    while True:
-        res = await keep_live_upload(params)
-        print(f"{user_info['nick']}----{res}")
-        await asyncio.sleep(10)
+    # while True:
+    #     res = await keep_live_upload(params)
+    #     print(f"{user_info['nick']}----{res}")
+    #     await asyncio.sleep(10)
 
 
 @task.add_task('live')

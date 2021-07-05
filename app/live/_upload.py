@@ -1,23 +1,5 @@
 from spider import upload
-from typing import NamedTuple, Union
-from random import choices
-
-
-def rand_str():
-    rand_arr = [*[str(item) for item in range(10)], *[chr(item) for item in range(97, 123)],
-                *[chr(item) for item in range(65, 91)]]
-    res = choices(rand_arr, k=32)
-    return ''.join(res)
-
-
-class Params(NamedTuple):
-    user_id: str
-    user_name: str
-    u_mid: str
-    imei: str
-    open_id: str
-    live_id: str
-    stay_time: Union[int, float]
+from ._utils import Params
 
 
 @upload(file_name='live.txt')

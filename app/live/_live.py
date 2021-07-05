@@ -419,6 +419,10 @@ class SendMsg(Spider):
 
 
 class LiveIdSpider(Spider):
+    """
+    通过用户名 获取 直播 id
+    """
+
     def __init__(self):
         self.is_get = False
 
@@ -475,5 +479,6 @@ class LiveIdSpider(Spider):
             "s": "10",
             "livePageNum": "0",
             "broadCasterPageSize": "0",
-            "viewversion": "3.0", "n": "0"
+            "viewversion": "3.0",
+            "n": "0"
         }
