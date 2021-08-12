@@ -73,7 +73,7 @@ def encode(str_: str) -> bytearray:
 
 async def encode_x_s(data: bytearray) -> str:
     x_s_params = md5(data).hexdigest().lower()
-    res = await Spider.get_client().get('http://192.168.0.141:10086/getSign', params={
+    res = await Spider.get_client().get('http://192.168.0.140:10086/getSign', params={
         'p1': x_s_params
     })
     return res.text
