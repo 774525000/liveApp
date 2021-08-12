@@ -36,7 +36,7 @@ async def enter_room(user_info):
     # res = await send_msg()
     # print(res)
 
-    # 日志包
+    # 日志包 观看人数，以及停留时间都在 日志包中 体现
     params = Params(
         user_info['x-uid'],
         user_name=user_info['nick'],
