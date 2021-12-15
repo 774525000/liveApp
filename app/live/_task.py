@@ -1,26 +1,27 @@
-from ._live import QueryDetail, Subscribe, Report, CommentPublish, FavorRoom, SendMsg, LeaveRoom, LiveIdSpider
+from ._live import QueryDetail, Subscribe, Report, CommentPublish, FavorRoom, SendMsg, LeaveRoom, LiveIdSpider, \
+    LiveIdSpider2
 import asyncio
 from app import task
-from ._utils import read_users, rand_str, Params
+from ._utils import read_users, rand_str, Params, get_query
 from ._upload import live_upload, keep_live_upload
 from random import randint
 
 
 async def enter_room(user_info):
-    q = QueryDetail(user_info)
-    res1 = await q()
-    print(res1)
-    s = Subscribe(user_info, res1)
-    res2 = await s()
-    print(res2)
-
-    r = Report(user_info)
-    res3 = await r()
-    print(f"{user_info['x-uid']}----{res3}")
+    # q = QueryDetail(user_info)
+    # res1 = await q()
+    # print(res1)
+    # s = Subscribe(user_info, res1)
+    # res2 = await s()
+    # print(res2)
     #
-    # await asyncio.sleep(10)
-    #
-    # leave_room = LeaveRoom(user_info, params1)
+    # r = Report(user_info)
+    # res3 = await r()
+    # print(f"{user_info['x-uid']}----{res3}")
+    # #
+    # # await asyncio.sleep(10)
+    # #
+    # leave_room = LeaveRoom(user_info, res1)
     # params4 = await leave_room()
     # print(params4)
     #
@@ -38,11 +39,11 @@ async def enter_room(user_info):
 
     # 日志包 观看人数，以及停留时间都在 日志包中 体现
     params = Params(
-        user_info['x-uid'],
+        user_info['x-uid'],  # user_info['x-uid']
         user_name=user_info['nick'],
         u_mid=rand_str(),
         imei=f'3536270780{randint(10000, 100000)}',
-        open_id=user_info['open_id'],
+        open_id='',
         live_id=user_info['live_id'],
         stay_time=500000
     )
@@ -58,9 +59,18 @@ async def enter_room(user_info):
 
 @task.add_task('live')
 async def enter_live_room():
-    live_id_spider = LiveIdSpider()
-    res = await live_id_spider()
-    live_id = res['data']['cardList'][0]['cardData'][0]['liveInfo']['liveId']
+    live = LiveIdSpider2()
+    res = await live()
+    live_id = ''
+    for item in res['data']['cardList']:
+        live_item = item['cardData'][0]
+        if live_item['accountInfo']['accountName'] == 'tb56371_88':
+            live_id = get_query(live_item['liveInfo']['jumpUrl'], 'id')
+            break
+    # live_id_spider = LiveIdSpider()
+    # res = await live_id_spider()
+    # live_id = res['data']['cardList'][0]['cardData'][0]['liveInfo']['liveId']
+
     print(f'直播id：{live_id}')
 
     task_list = []

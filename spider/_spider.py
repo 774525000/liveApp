@@ -11,8 +11,8 @@ class Spider:
     _data_dumps: str = ''
     _client: httpx.AsyncClient = None
     proxies = {
-        'http': 'http://192.168.0.209:8888',
-        'https': 'http://192.168.0.209:8888'
+        'http': 'http://192.168.0.206:8888',
+        'https': 'http://192.168.0.206:8888'
     }
     verify = './FiddlerRoot.pem'
 
@@ -48,7 +48,13 @@ class Spider:
 
         res = await Spider._client.get(url, params=data)
         params = res.json()
-        return merge_dict(params, self.headers)
+        self.headers.pop('x-umt')
+        return {
+            **self.headers,
+            'x-sgext': params['x-sgext'],
+            'x-mini-wua': params['x-mini-wua'],
+            'x-sign': params['x-sign']
+        }
 
     @staticmethod
     def get_base_headers(headers):

@@ -482,3 +482,64 @@ class LiveIdSpider(Spider):
             "viewversion": "3.0",
             "n": "0"
         }
+
+
+class LiveIdSpider2(Spider):
+    def __init__(self):
+        self.is_get = False
+
+        ctime = get_unix()
+        self.api = Api('mtop.mediaplatform.live.search.result', '1.0')
+
+        self.headers = {
+            'x-sgext': 'JAE4yxazMMp+NRpUcnH3lMsJ+wn7CegL/A7/G/oM/BvoCf0K8gD4Cf4K+Q==',
+            'x-social-attr': '3',
+            'x-sign': 'azYBCM003xAAKTy9yanzC5wcYLRViTy5PFVWLzsn85BgFmy9kY2PfefZXJ6KnZTX2jxjjczkGlB34yi9bIh4DZ39lSkcGTy5PBk8uT',
+            'x-sid': '12f6d07e17dbe3afa449a5fcbcef54c4',
+            'A-SLIDER-Q': 'appKey=21646297&ver=1629866440512',
+            'x-uid': '790956988',
+            'x-nettype': 'WIFI',
+            'x-pv': '6.3',
+            'x-disastergrd': '',
+            'x-nq': 'WIFI',
+            'x-region-channel': 'CN',
+            'x-m-biz-live-bizcode': 'TAOBAO',
+            'x-features': '27',
+            'x-app-conf-v': '0',
+            'x-mini-wua': 'HHnB_/RiSrEyzg3RPjgr+eOOfwyk2yZzOrNtNnLwr25w0IdxYPj0mqQTzlrwjGbqCr+GDZli+0h3NSpA5wR/r8meIFU1CxQlbuovMp39ixkUAWV3Y+SpYvAaeXe61HbYsqV49GAfsyjYP3mnsB3hRib+4ec+2b8MKWQQdd9LVdaTLoyo=',
+            'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'x-t': f'{ctime.seconds}',
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'Cookie': 'thw=cn; unb=790956988; sn=; uc3=id2=VAiXW2YFNTg6&nk2=F5RARJwyDq84nA==&lg2=UtASsssmOIJ0bQ==&vt3=F8dCujHouepxOUKDcUQ=; uc1=existShop=false&cookie14=Uoe2xMso2Q64vA==&cookie15=VT5L2FSpMGV7TQ==&cookie21=U+GCWk/7pY/F; csg=c6c40770; lgc=tb56371_88; cancelledSubSites=empty; t=c46c01bb86a77a6035d0e2afd5cd0b03; cookie17=VAiXW2YFNTg6; dnk=tb56371_88; skt=2db0b19f222f711b; munb=790956988; cookie2=12f6d07e17dbe3afa449a5fcbcef54c4; uc4=id4=0@VhEAnQ1U4YAzcT9hLG0zMbrLriQ=&nk4=0@FY4L6MK99P3tScDP3OuEAZkNqw58; tracknick=tb56371_88; _cc_=U+GCWk/7og==; ti=; sg=881; _l_g_=Ug==; _nk_=tb56371_88; cookie1=AVxCpWitePIxNrLrpV/TJUqr/eYekUOf9w5p8wPzWEU=; _tb_token_=e3b3eb38b731d; sgcookie=W10051RTuZjlePZY8n9Sdnrc800PYzbqkBCKe1GU7TlnW9dE/ROOkEXQGuHV8OAOdhZExeL7Z3uBG5cjh/FE7VtvUHR7FGpTuTr93dDFD+MQIFJKkTQ3upLtJHQazVWVPRvb; imewweoriw=36ooPNshmHk58+JLwyMMHkRaU9tLdYR51EFvl4j49BQ=; WAPFDFDTGFG=+4cMKKP+8PI+KK8b4voSzhNiNciy; _w_tb_nick=tb56371_88; ockeqeudmj=m+wEfGA=; isg=AtLSid2A50h6RBu0johFXjvIKJq049Z9hNa-I5wr_gVwr3KphHMmjdjObTFs; cna=79isGdnshEgCAbeci 5P 05h',
+            'x-bx-version': '6.5.27',
+            'f-refer': 'mtop',
+            'x-extdata': 'openappkey=DEFAULT_AUTH',
+            'x-ttid': '1568860058617@taobao_android_9.25.0',
+            'x-app-ver': '9.25.0',
+            'x-c-traceid': 'YKnJdlCwF6oDACfhFIu95LNr1629831933690055513764',
+            'x-location': '120.162404,30.184984',
+            'a-orange-dq': 'appKey=21646297&appVersion=9.25.0&clientAppIndexVersion=1120210825145402483',
+            'x-umt': 'yvUAStNLPE22BgJ7YkqG7mhV808F0m6U',
+            'x-utdid': 'YKnJdlCwF6oDACfhFIu95LNr',
+            'c-launch-info': '0,0,1629831933690,1629831520238,2',
+            'x-appkey': '21646297',
+            'x-page-url': 'http://h5.m.taobao.com/taolive/search.html',
+            'x-page-name': 'com.taobao.live.TaoLiveSearchActivity',
+            'x-devid': 'Atzi2cGlhQSAlW_BJjJULEPfux711JxUjrXZ4t26uta7',
+            'user-agent': 'MTOPSDK/3.1.1.7 (Android;8.1.0;LGE;Nexus 5X)',
+            'Host': 'guide-acs.m.taobao.com',
+            'Accept-Encoding': 'gzip',
+            'Connection': 'Keep-Alive'
+        }
+
+        self.data = {
+            "broadCasterPageNum": "0",
+            "livePageSize": "20",
+            "q": "10678014",
+            "tabName": "anchor",
+            "mNeedCache": "true",
+            "s": "10",
+            "livePageNum": "0",
+            "broadCasterPageSize": "10",
+            "viewversion": "3.0", "n": "0"
+        }

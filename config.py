@@ -3,4 +3,4 @@
 """
 
 # 获取 sign 的 路径
-SIGN_URL = 'http://192.168.0.140:10086/sign'
+SIGN_URL = 'http://192.168.0.109:10086/sign'
